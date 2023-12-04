@@ -32,18 +32,14 @@ function getComputerSelection(){
 
 // CREATE funtion getPlayerSelecton
 //     prompt user "Play your hand:"
-
 function getPlayerSelecton(){
-
     let playerSelection = prompt("Play your hand:");
     // Converts all user input to initial letter uppercase and rest of string lowercase
     playerSelection = playerSelection.substring(0,1).toUpperCase() + playerSelection.substring(1).toLocaleLowerCase();
-
     // console.log(playerSelection);
-
     return playerSelection
 }
-console.log(getPlayerSelecton());
+
 // Create function playRound which takes 2 arguments of type string "computer, player"
 //     if player equals computer
 //         return zero 
@@ -61,7 +57,19 @@ console.log(getPlayerSelecton());
 //             return "computer wins"
 //     }
 
-
+function playRound(playerSelection, computerSelection){
+    if (playerSelection == computerSelection){
+        return "Draw";
+    } else if (
+        (playerSelection == "Rock" && computerSelection == "Paper")
+        || (playerSelection == "Paper" && computerSelection == "Scissors")
+        || (playerSelection == "Scissor" && computerSelection == "Rock")
+    ) {
+        return "Computer Wins";
+    } else return "Player Wins";
+    
+}
+console.log(playRound("Scissor", "Rock"));
 
 // WHILE currentRoundScore equals "Draw" or currentRoundScore equals Null
 
