@@ -20,44 +20,47 @@ function getComputerSelection(){
 function getPlayerSelection(){
     let playerSelection = prompt("Play your hand:");
     // Converts all user input to initial letter uppercase and rest of string lowercase
-    playerSelection = playerSelection.substring(0,1).toUpperCase() + playerSelection.substring(1).toLocaleLowerCase();
-    // console.log(playerSelection);
+    playerSelection = playerSelection.substring(0,1).toUpperCase() + playerSelection.substring(1).toLowerCase();
+    // Check if player input is correct;
     if((playerSelection != "Rock") && (playerSelection != "Paper") && (playerSelection != "Scissors")){
         alert("invalid input! Please try again.");
-        getPlayerSelection();
+        playerSelection = getPlayerSelection();
     }
-    else return playerSelection;
+    return playerSelection;
 }
 
 // Create function playRound which takes 2 arguments of type string "computer, player"
 function playRound(playerSelection, computerSelection){
-    if (playerSelection == computerSelection){
-        alert("Draw, play again!")
-        return "Draw";
-    } else if ( 
-        (playerSelection == "Rock" && computerSelection == "Paper")
-        || (playerSelection == "Paper" && computerSelection == "Scissors")
-        || (playerSelection == "Scissor" && computerSelection == "Rock")
-    ) {
-        computerScore++;
-        return "You Lose! " + computerSelection + " beats " + playerSelection;
-    } else {
-        playerScore++;
-        return "You Win! " + playerSelection + " beats " + computerSelection;
+    
+    while(currentRoundResult == "Draw" || currentRoundResult == null){
+        if (playerSelection == computerSelection){
+            alert("Draw, play again!")
+            // return "Draw";
+            //player must select again
+            playerSelection = getPlayerSelection();
+            computerSelection = getComputerSelection();
+        } else if ( 
+            (playerSelection == "Rock" && computerSelection == "Paper")
+            || (playerSelection == "Paper" && computerSelection == "Scissors")
+            || (playerSelection == "Scissor" && computerSelection == "Rock")
+        ) {
+            computerScore++;
+            return "You Lose! " + computerSelection + " beats " + playerSelection;
+        } else {
+            playerScore++;
+            return "You Win! " + playerSelection + " beats " + computerSelection;
+        }
     }
+        
     
 }
 // Create a function that loops through 5 rounds of the game
 function game(){
 
     for(let i = 0; i < 5; i++){
-        while(currentRoundResult == "Draw" || currentRoundResult == null){
-            currentRoundResult = playRound(getPlayerSelection(), getComputerSelection());
-            // console.log("here");
-             console.log(currentRoundResult);
-        }
+        currentRoundResult = playRound(getPlayerSelection(), getComputerSelection());
+        console.log(currentRoundResult);
         currentRoundResult = null;
-
     }
 
     if(playerScore > computerScore){
