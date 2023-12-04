@@ -32,7 +32,7 @@ function getComputerSelection(){
 
 // CREATE funtion getPlayerSelecton
 //     prompt user "Play your hand:"
-function getPlayerSelecton(){
+function getPlayerSelection(){
     let playerSelection = prompt("Play your hand:");
     // Converts all user input to initial letter uppercase and rest of string lowercase
     playerSelection = playerSelection.substring(0,1).toUpperCase() + playerSelection.substring(1).toLocaleLowerCase();
@@ -56,33 +56,38 @@ function getPlayerSelecton(){
 //             //return playerScore++;
 //             return "computer wins"
 //     }
-
 function playRound(playerSelection, computerSelection){
     if (playerSelection == computerSelection){
+        alert("Draw, play again!")
         return "Draw";
     } else if (
         (playerSelection == "Rock" && computerSelection == "Paper")
         || (playerSelection == "Paper" && computerSelection == "Scissors")
         || (playerSelection == "Scissor" && computerSelection == "Rock")
     ) {
-        return "Computer Wins";
-    } else return "Player Wins";
+        return "You Lose! " + computerSelection + " beats " + playerSelection;
+    } else return "You Win! " + playerSelection + " beats " + computerSelection;
+
     
 }
-console.log(playRound("Scissor", "Rock"));
+// console.log(playRound("Scissor", "Rock"));
 
 // WHILE currentRoundScore equals "Draw" or currentRoundScore equals Null
-
 //     ASSIGN currentRoundScore TO playRound(getComputerSelection(), getHumanSelection()) 
-
 //     IF  currentRoundScore equals "Draw"
 //         print to console "Draw"
 //     Else IF currentRoundScore equals "Player Wins"
 //         print to console Player "player wins"
 //     Else 
 //         print computer wins
-
 //     END
+
+while(currentRoundScore == "Draw" || currentRoundScore == null){
+    currentRoundScore = playRound(getPlayerSelection(), getComputerSelection());
+    // console.log("here");
+    
+    console.log(currentRoundScore);
+}
 
 
 
