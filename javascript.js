@@ -1,10 +1,10 @@
 
 
-// Instantiate playerScore
-// Instantiate computerScore
+let playerScore = 0;
+let computerScore = 0; 
 
 // instantiate currentRoundResult assign Null
-let currentRoundScore = null;
+let currentRoundResult = null;
 
 
 // Instantiate and set computerSelection using function getComputerSelection 
@@ -60,35 +60,58 @@ function playRound(playerSelection, computerSelection){
     if (playerSelection == computerSelection){
         alert("Draw, play again!")
         return "Draw";
-    } else if (
+    } else if ( 
         (playerSelection == "Rock" && computerSelection == "Paper")
         || (playerSelection == "Paper" && computerSelection == "Scissors")
         || (playerSelection == "Scissor" && computerSelection == "Rock")
     ) {
+        computerScore++;
         return "You Lose! " + computerSelection + " beats " + playerSelection;
-    } else return "You Win! " + playerSelection + " beats " + computerSelection;
-
+    } else {
+        playerScore++;
+        return "You Win! " + playerSelection + " beats " + computerSelection;
+    }
     
 }
 // console.log(playRound("Scissor", "Rock"));
+// Create a function that loops through 5 rounds of the game
+    // WHILE currentRoundResult equals "Draw" or currentRoundResult equals Null
+    //     ASSIGN currentRoundResult TO playRound(getComputerSelection(), getHumanSelection()) 
+    //     IF  currentRoundResult equals "Draw"
+    //         print to console "Draw"
+    //     Else IF currentRoundResult equals "Player Wins"
+    //         print to console Player "player wins"
+    //     Else 
+    //         print computer wins
+    //     END
+    // Compare the value of humanScore to playerscore to determine the winner
 
-// WHILE currentRoundScore equals "Draw" or currentRoundScore equals Null
-//     ASSIGN currentRoundScore TO playRound(getComputerSelection(), getHumanSelection()) 
-//     IF  currentRoundScore equals "Draw"
-//         print to console "Draw"
-//     Else IF currentRoundScore equals "Player Wins"
-//         print to console Player "player wins"
-//     Else 
-//         print computer wins
-//     END
 
-while(currentRoundScore == "Draw" || currentRoundScore == null){
-    currentRoundScore = playRound(getPlayerSelection(), getComputerSelection());
-    // console.log("here");
-    
-    console.log(currentRoundScore);
+
+function game(){
+
+    for(let i = 0; i < 5; i++){
+        while(currentRoundResult == "Draw" || currentRoundResult == null){
+            currentRoundResult = playRound(getPlayerSelection(), getComputerSelection());
+            // console.log("here");
+             console.log(currentRoundResult);
+        }
+        // console.log("hello");
+        currentRoundResult = null;
+
+    }
+
+    if(playerScore > computerScore){
+        console.log("Player wins the game " + playerScore + " - " + computerScore);
+    } else {
+        console.log("Computer wins the game " + computerScore + " - " + playerScore);
+    }
 }
 
+game();
 
 
+
+
+ 
  
