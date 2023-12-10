@@ -35,31 +35,32 @@ function playRound(event){
     // Get player selection from the event element
     const playerSelection = event.target.id;
     let computerSelection = getComputerSelection();
-    // console.log(playerSelection);
-    // console.log(computerSelection);
+
+    const result = document.querySelector('#result');
 
 
-    // while(currentRoundResult == "Draw" || currentRoundResult == null){
-        if (playerSelection == computerSelection){
-            alert("Draw, play again!")
-            
-        } else if ( 
-            (playerSelection == "rock" && computerSelection == "paper")
-            || (playerSelection == "paper" && computerSelection == "scissors")
-            || (playerSelection == "scissor" && computerSelection == "rock")
-        ) {
-            computerScore++;
-            console.log("You Lose! " + computerSelection + " beats " + playerSelection);
-        } else {
-            playerScore++;
-            console.log("You Win! " + playerSelection + " beats " + computerSelection);
-        }
-        console.log(`Score: Player: ${playerScore}, Computer: ${computerScore} `)
+    if (playerSelection == computerSelection){
+        // alert("Draw, play again!")
+        
+    } else if ( 
+        (playerSelection == "rock" && computerSelection == "paper")
+        || (playerSelection == "paper" && computerSelection == "scissors")
+        || (playerSelection == "scissor" && computerSelection == "rock")
+    ) {
+        computerScore++;
+        // console.log("You Lose! " + computerSelection + " beats " + playerSelection);
+    } else {
+        playerScore++;
+        console.log("You Win! " + playerSelection + " beats " + computerSelection);
+    }
 
-    // }
+    result.textContent = `Score: Player: ${playerScore}, Computer: ${computerScore}`;
+
+
+}
         
     
-}
+
 // Loops through 5 rounds of the game and displays results for each round and final winner
 function game(){
 
