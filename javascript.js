@@ -8,11 +8,11 @@ function getComputerSelection(){
     // console.log(rand);
     switch(rand) {
         case 0:
-            return "Rock";
+            return "rock";
         case 1: 
-            return "Paper";
+            return "paper";
         case 2:
-            return "Scissors";
+            return "scissors";
     }
 }
 
@@ -30,26 +30,33 @@ function getPlayerSelection(){
 }
 
 // Takes 2 arguments of type string "computer, player" , in the case of a draw the game will be replayed until there is a winner. Returns result string
-function playRound(playerSelection, computerSelection){
+function playRound(event){
     
-    while(currentRoundResult == "Draw" || currentRoundResult == null){
+    // Get player selection from the event element
+    const playerSelection = event.target.id;
+    let computerSelection = getComputerSelection();
+    // console.log(playerSelection);
+    // console.log(computerSelection);
+
+
+    // while(currentRoundResult == "Draw" || currentRoundResult == null){
         if (playerSelection == computerSelection){
             alert("Draw, play again!")
-            //player must select again
-            playerSelection = getPlayerSelection();
-            computerSelection = getComputerSelection();
+            
         } else if ( 
-            (playerSelection == "Rock" && computerSelection == "Paper")
-            || (playerSelection == "Paper" && computerSelection == "Scissors")
-            || (playerSelection == "Scissor" && computerSelection == "Rock")
+            (playerSelection == "rock" && computerSelection == "paper")
+            || (playerSelection == "paper" && computerSelection == "scissors")
+            || (playerSelection == "scissor" && computerSelection == "rock")
         ) {
             computerScore++;
-            return "You Lose! " + computerSelection + " beats " + playerSelection;
+            console.log("You Lose! " + computerSelection + " beats " + playerSelection);
         } else {
             playerScore++;
-            return "You Win! " + playerSelection + " beats " + computerSelection;
+            console.log("You Win! " + playerSelection + " beats " + computerSelection);
         }
-    }
+        console.log(`Score: Player: ${playerScore}, Computer: ${computerScore} `)
+
+    // }
         
     
 }
@@ -70,3 +77,12 @@ function game(){
 }
 
 // game();
+
+
+const btnRock = document.querySelector('#rock');
+const btnPaper = document.querySelector('#paper');
+const btnScissors = document.querySelector('#scissors');
+
+btnRock.addEventListener('click', playRound);
+btnPaper.addEventListener('click', playRound);
+btnScissors.addEventListener('click', playRound);
