@@ -29,13 +29,12 @@ function getPlayerSelection(){
     return playerSelection;
 }
 
-// Create function playRound which takes 2 arguments of type string "computer, player"
+// Takes 2 arguments of type string "computer, player" , in the case of a draw the game will be replayed until there is a winner. Returns result string
 function playRound(playerSelection, computerSelection){
     
     while(currentRoundResult == "Draw" || currentRoundResult == null){
         if (playerSelection == computerSelection){
             alert("Draw, play again!")
-            // return "Draw";
             //player must select again
             playerSelection = getPlayerSelection();
             computerSelection = getComputerSelection();
@@ -54,7 +53,7 @@ function playRound(playerSelection, computerSelection){
         
     
 }
-// Create a function that loops through 5 rounds of the game
+// Loops through 5 rounds of the game and displays results for each round and final winner
 function game(){
 
     for(let i = 0; i < 5; i++){
@@ -70,4 +69,4 @@ function game(){
     }
 }
 
-game();
+// game();
